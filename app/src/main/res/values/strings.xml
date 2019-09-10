@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">vk-friends</string>
+    <string name="login_hello">Вас приветствуют ДрузьяВК!</string>
+    <string name="login_button_text">Войти</string>
+    <string name="title_activity_friends" tools:keep="@string/title_activity_friends">FriendsActivity</string>
+    <string name="friends_search_hint">Введите свой запрос</string>
+    <string name="friends_no_items">У вас нет друзей.</string>
+    <string name="login_error">Ошибка при входе в ВК.</string>
+    <string name="friend_no_city">Город не указан</string>
+    <integer name="com_vk_sdk_AppId">7129714</integer>
+</resources>
