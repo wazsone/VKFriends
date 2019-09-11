@@ -15,6 +15,7 @@ import com.example.vk_friends.adapters.FriendsAdapter
 import com.example.vk_friends.model.FriendModel
 import com.example.vk_friends.presentation.presenter.FriendsPresenter
 import com.example.vk_friends.presentation.view.FriendsView
+import com.vk.api.sdk.VK
 import kotlinx.android.synthetic.main.activity_friends.*
 
 class FriendsActivity : MvpAppCompatActivity(), FriendsView {
@@ -26,6 +27,12 @@ class FriendsActivity : MvpAppCompatActivity(), FriendsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
+
+        btn_logout.setOnClickListener {
+            VK.logout()
+            LoginActivity.startFrom(this)
+            finish()
+        }
 
         et_friends_search.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

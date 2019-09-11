@@ -23,14 +23,13 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (VK.isLoggedIn()) {
-            FriendsActivity.startFrom(this)
-            finish()
+            openFriends()
             return
         }
 
         setContentView(R.layout.activity_login)
 
-        btn_login_enter.setOnClickListener {
+        btn_login.setOnClickListener {
             //            loginPresenter.login(true)
             VK.login(this, arrayListOf(VKScope.FRIENDS))
         }
@@ -47,19 +46,20 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
     }
 
     override fun startLoading() {
-        btn_login_enter.visibility = View.GONE
+        btn_login.visibility = View.GONE
         cpv_login_progress.visibility = View.VISIBLE
         cpv_login_progress.startAnimation()
     }
 
     override fun endLoading() {
-        btn_login_enter.visibility = View.VISIBLE
+        btn_login.visibility = View.VISIBLE
         cpv_login_progress.visibility = View.GONE
         cpv_login_progress.stopAnimation()
     }
 
     override fun openFriends() {
-        startActivity(Intent(applicationContext, FriendsActivity::class.java))
+        FriendsActivity.startFrom(this)
+        finish()
     }
 
     override fun showError(textResource: Int) {
