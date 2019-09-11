@@ -1,5 +1,6 @@
 package com.example.vk_friends.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -21,6 +22,12 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (VK.isLoggedIn()) {
+            FriendsActivity.startFrom(this)
+            finish()
+            return
+        }
+
         setContentView(R.layout.activity_login)
 
         btn_login_enter.setOnClickListener {
@@ -59,4 +66,11 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         Toast.makeText(applicationContext, getString(textResource), Toast.LENGTH_SHORT).show()
     }
 
+    companion object {
+        fun startFrom(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            context.startActivity(intent)
+        }
+    }
 }

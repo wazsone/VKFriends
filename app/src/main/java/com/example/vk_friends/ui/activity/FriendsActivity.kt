@@ -1,5 +1,7 @@
 package com.example.vk_friends.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -73,5 +75,12 @@ class FriendsActivity : MvpAppCompatActivity(), FriendsView {
         tv_no_items.visibility = View.GONE
 
         adapter.setupFriends(friendsList)
+    }
+
+    companion object {
+        fun startFrom(context: Context) {
+            val intent = Intent(context, FriendsActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }
